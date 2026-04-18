@@ -95,32 +95,19 @@ config MY_PROTOCOL_SPEED
     default 115200
     depends on MY_PROTOCOL_ENABLE
 ```
+Система сборки сканирует папки компонентов и если видит файл с именем Kconfig.projbuild, она автоматически импортирует его в корень menuconfig.
 
-
-
-
-
-
+Если вы напишете просто:
 ```kconfig
+source "Kconfig.network"
 ```
+...система может его не найти, так как она ищет файл относительно корня всего проекта, а не папки вашего компонента.
+Используйте переменную $COMPONENT_DIR (она подставляется автоматически), чтобы указать путь именно внутри вашей папки:
 ```kconfig
+# В файле Kconfig.projbuild
+menu "Мои настройки"
+    source "$COMPONENT_DIR/Kconfig.network"
+    source "$COMPONENT_DIR/Kconfig.sensors"
+endmenu
 ```
-```kconfig
-```
-```kconfig
-```
-```kconfig
-```
-```kconfig
-```
-```kconfig
-```
-
-```kconfig
-```
-```kconfig
-```
-```kconfig
-```
-```kconfig
-```
+Переменная $COMPONENT_DIR — это внутренняя переменная Kconfig (переменную создает скрипт сборки ESP-IDF прямо во время запуска idf.py menuconfig). Она существует только «внутри» процесса сборки ESP-IDF. В ESP-IDF переменная $COMPONENT_DIR всегда указывает на путь к папке конкретного компонента, в котором находится обрабатываемый файл (Kconfig.projbuild).
