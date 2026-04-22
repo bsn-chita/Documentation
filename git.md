@@ -27,7 +27,3 @@ gpush() {
 ```bash
 source ~/.bash_aliases
 ```
-
-
-
-
