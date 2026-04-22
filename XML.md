@@ -313,7 +313,7 @@ xdto-пакеты в 1с это то что называют xml схемами.
 
 
 
-
+https://share.google/aimode/BACwJAKym67rxJBn5
 
 
 
