@@ -1,7 +1,11 @@
 Добавляем в файл ~/.bash_aliases
 
 ```bash
-lazy() {
+alias gstatus='git status'
+alias glog='git log --oneline -n 10'
+alias gpull='git pull --rebase'
+
+gpush() {
     local msg="${1:-lazy update: $(date +'%Y-%m-%d %H:%M')}"
     git pull --rebase && git add -A && git commit -m "$msg" && git push
 }
